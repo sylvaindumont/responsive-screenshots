@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Responsive Screenshots</title>
+  <style>
+    .frame-container.device-view {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      overflow: hidden
+    }
+
+    iframe.device-view {
+      background: #fff;
+      border: none;
+      height: 100%;
+      position: absolute;
+      width: 100%
+    }
+
+    device-view[device=handset] {
+      border-color: #999;
+      border-radius: 36px;
+      border-style: solid;
+      border-width: 60px 16px
+    }
+
+    device-view[device=handset][landscape] {
+      border-width: 16px 60px
+    }
+
+    device-view[device=tablet] {
+      border-color: #757575;
+      border-radius: 36px;
+      border-style: solid;
+      border-width: 60px 16px
+    }
+
+    device-view[device=tablet][landscape] {
+      border-width: 16px 60px
+    }
+
+    device-view[device=window][disable-sizing] {
+      border-color: #666;
+      border-radius: 6px;
+      border-style: solid;
+      border-width: 24px 24px 80px
+    }
+
+    device-view[device=window][disable-sizing]:after {
+      background: #666;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      bottom: -56px;
+      content: "";
+      display: block;
+      height: 56px;
+      left: -140px;
+      margin: -24px;
+      position: absolute;
+      right: -140px
+    }
+  </style>
+  <style>
+    .device-list.device-resizer device-view.device-resizer {
+      display: none
+    }
+
+    .device-list[view=window].device-resizer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center
+    }
+
+    .device-list[view=window].device-resizer #window.device-resizer {
+      display: block
+    }
+
+    .device-list[view=window].device-resizer #window.device-resizer:before {
+      margin: 0 -1px;
+      border-radius: 0;
+      background: #ddd
+    }
+
+    .device-list[view=window].device-resizer #window.device-resizer:after {
+      display: none
+    }
+
+    .device-list[view=handset].device-resizer {
+      margin: auto
+    }
+
+    .device-list[view=handset].device-resizer #handset.device-resizer {
+      display: block;
+      margin: 40px
+    }
+
+    #device-container.device-resizer {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      overflow: auto;
+      position: relative
+    }
+
+    .device-list[view=all].device-resizer {
+      box-sizing: border-box;
+      display: block;
+      height: calc(904px * .5);
+      margin: 0 auto;
+      max-width: 1400px;
+      position: relative;
+      width: 100%
+    }
+
+    .device-list[view=all].device-resizer device-view.device-resizer {
+      -webkit-transform: scale(.5);
+      transform: scale(.5);
+      display: block;
+      bottom: 0
+    }
+
+    .device-list[view=all].device-resizer #window.device-resizer {
+      width: 1366px;
+      height: 800px;
+      margin-left: 10%;
+      -webkit-transform-origin: top left;
+      transform-origin: top left;
+      position: static
+    }
+
+    .device-list[view=all].device-resizer #tablet.device-resizer {
+      width: 1024px;
+      height: 768px;
+      right: 17%;
+      -webkit-transform-origin: bottom right;
+      transform-origin: bottom right;
+      position: absolute
+    }
+
+    .device-list[view=all].device-resizer #handset.device-resizer {
+      height: 640px;
+      width: 360px;
+      right: 5%;
+      -webkit-transform-origin: bottom right;
+      transform-origin: bottom right;
+      position: absolute
+    }
+
+    @media screen and (min-width:1300px) and (min-height:650px) {
+      .device-list[view=all].device-resizer {
+        height: calc(904px * .75);
+        max-width: 1700px
+      }
+
+      .device-list[view=all].device-resizer device-view.device-resizer {
+        -webkit-transform: scale(.75);
+        transform: scale(.75)
+      }
+    }
+
+    @media screen and (max-width:1024px),
+    screen and (max-height:550px) {
+      .device-list[view=all].device-resizer {
+        height: calc(904px * .35);
+        max-width: 980px
+      }
+
+      .device-list[view=all].device-resizer device-view.device-resizer {
+        -webkit-transform: scale(.35);
+        transform: scale(.35)
+      }
+    }
+
+    @media screen and (max-width:720px),
+    screen and (max-height:420px) {
+      .device-list[view=all].device-resizer {
+        height: calc(904px * .18);
+        max-width: 500px
+      }
+
+      .device-list[view=all].device-resizer device-view.device-resizer {
+        -webkit-transform: scale(.18);
+        transform: scale(.18)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="device-list style-scope device-resizer" view="all">
+    <device-view id="window" device="window" class="style-scope device-resizer" device-width="840" style="" disable-sizing="">
+      <div class="frame-container style-scope device-view">
+        <iframe id="frame1" sandbox="allow-scripts allow-same-origin" class="style-scope device-view" src="http://localhost:4200" scrolling="no"></iframe>
+      </div>
+    </device-view>
+    <device-view id="tablet" device="tablet" landscape="" class="style-scope device-resizer">
+      <div class="frame-container style-scope device-view">
+        <iframe id="frame2" sandbox="allow-scripts allow-same-origin" class="style-scope device-view" src="http://localhost:4200" scrolling="no"></iframe>
+      </div>
+    </device-view>
+    <device-view id="handset" device="handset" aspect="16x9" class="style-scope device-resizer" device-width="360" style="" disable-sizing="">
+      <div class="frame-container style-scope device-view">
+        <iframe id="frame3" sandbox="allow-scripts allow-same-origin" class="style-scope device-view" src="http://localhost:4200" scrolling="no"></iframe>
+      </div>
+    </device-view>
+  </div>
+  <script>
+    const url = new URL(location.href).searchParams.get('url');
+    document.querySelector('#frame1').src = url;
+    document.querySelector('#frame2').src = url;
+    document.querySelector('#frame3').src = url;
+  </script>
+</body>
+</html>
