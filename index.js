@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const CDP = require('chrome-remote-interface');
 const argv = require('minimist')(process.argv.slice(2));
 const file = require('mz/fs');
@@ -27,7 +29,7 @@ const chrome = spawn(argv.chromium ? 'chromium' : 'google-chrome', [
 
 // Create server
 let server = http.createServer(function onRequest(req, res) {
-  serveStatic('.', { index: ['index.html'] })(req, res, finalhandler(req, res));
+  serveStatic(__dirname, { index: ['index.html'] })(req, res, finalhandler(req, res));
 });
 let client;
 

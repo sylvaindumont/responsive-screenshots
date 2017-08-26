@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "bin": { "responsive-screenshots": "./index.js" },
+  "bin": {
+    "responsive-screenshots": "./index.js"
+  },
   "author": "",
   "license": "ISC",
-  "engines": { "node": ">=7.6.0" },
+  "engines": {
+    "node": ">=7.6.0"
+  },
   "dependencies": {
-    "@types/node": "^8.0.22",
     "chrome-remote-interface": "^0.23.0",
     "finalhandler": "^1.0.4",
     "minimist": "^1.2.0",
